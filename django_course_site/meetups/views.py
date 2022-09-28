@@ -1,16 +1,15 @@
-from importlib.metadata import requires
 from django.shortcuts import render
 
 from .models import Meetup
-# Create your views here.
 
+# Create your views here.
 
 def index(request):
     meetups = Meetup.objects.all()
     return render(request, 'meetups/index.html', {
-        'show_meetups': True,
         'meetups': meetups
     })
+
 
 def meetup_details(request, meetup_slug):
     try:
@@ -22,5 +21,5 @@ def meetup_details(request, meetup_slug):
         })
     except Exception as exc:
         return render(request, 'meetups/meetup-details.html', {
-            'meetup_found': False,
+            'meetup_found': False
         })
